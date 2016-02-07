@@ -12,9 +12,6 @@ import org.apache.wicket.protocol.http.WebApplication;
  */
 public class WicketApplication extends WebApplication {
 
-	public WicketApplication() {
-	}
-
 	@Override
 	public Class<? extends Page> getHomePage() {
 		return HomePage.class;
@@ -23,6 +20,7 @@ public class WicketApplication extends WebApplication {
 	@Override
 	protected void init() {
 		super.init();
+		// add project configuration here
 	}
 
 }
