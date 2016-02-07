@@ -1,1 +1,5 @@
 /target/
+.metadata
+*.class
+.project
+.settings

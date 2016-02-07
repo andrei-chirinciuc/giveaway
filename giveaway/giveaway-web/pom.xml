@@ -14,11 +14,40 @@
 	<name>giveaway-web UI</name>
 	<url>http://www.giveaway.webeet.ro</url>
 
+	<properties>
+		<wicket.version>7.1.0</wicket.version>
+	</properties>
+
+
 	<dependencies>
+		<!-- Unit test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+		
+		<!-- Wicket dependencies -->
+		<dependency>
+		    <groupId>org.apache.wicket</groupId>
+		    <artifactId>wicket-core</artifactId>
+		    <version>${wicket.version}</version>
+		</dependency>
+		
+		<!-- Necessary for wicket -->
+		<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+		</dependency>		
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+
+
+			
 	</dependencies>
 
 	<build>
