@@ -3,6 +3,7 @@
  */
 package ro.webeet.giveaway.web;
 
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,9 @@ public class HomePageTest {
 		tester.startPage(HomePage.class);
 		// assert rendered page class
 		tester.assertRenderedPage(HomePage.class);
+
+		final PageParameters params = new PageParameters();
+		final HomePage page = new HomePage(params);
 	}
 
 }
