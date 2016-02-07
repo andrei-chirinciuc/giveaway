@@ -1,0 +1,20 @@
+# PROJECT IGNORES
+
+# Java class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Generated files
+bin/
+gen/
+
+# Gradle files
+.gradle/
+build/
+
+# Maven files
+target/
