@@ -18,3 +18,9 @@ build/
 
 # Maven files
 target/
+
+.metadata
+.classpath
+.project
+.recommenders
+.settings
