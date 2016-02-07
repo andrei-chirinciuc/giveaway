@@ -1,12 +1,15 @@
 /**
  *
  */
-package ro.webeet.giveaway.web;
+package ro.webeet.giveaway.web.page;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
+
+import ro.webeet.giveaway.web.HomePage;
+import ro.webeet.giveaway.web.WicketApplication;
 
 /**
  * @author webeet
@@ -28,8 +31,8 @@ public class HomePageTest {
 		// assert rendered page class
 		tester.assertRenderedPage(HomePage.class);
 
-		final PageParameters params = new PageParameters();
-		final HomePage page = new HomePage(params);
+		tester.startPage(HomePage.class, new PageParameters());
+		tester.assertRenderedPage(HomePage.class);
 	}
 
 }
