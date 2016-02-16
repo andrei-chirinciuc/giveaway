@@ -14,7 +14,7 @@ public class TestEnvironment implements ProfileEnvironment {
 
 	private static final Logger log = LoggerFactory.getLogger(TestEnvironment.class);
 
-	@Bean
+	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		log.debug("TestEnvironment::Running in test mode");
 		return null;

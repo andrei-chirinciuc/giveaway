@@ -1,5 +1,7 @@
 package ro.webeet.giveaway.persistence.configuration;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import ro.webeet.giveaway.persistence.environment.ProfileEnvironment;
 import ro.webeet.giveaway.persistence.environment.Profiles;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(Profiles.DEVELOPMENT)
+@ActiveProfiles(Profiles.TEST)
 @ContextConfiguration(classes = { SpringConfiguration.class })
 public class SpringConfigurationTest {
 
@@ -22,9 +24,9 @@ public class SpringConfigurationTest {
 	private SpringConfiguration config;
 
 	@Test
-	public void testShowSelectedEnv() {
+	public void testShowSelectedEnv() throws Exception {
 		env.dataSource();
-		config.showSelectedEnv();
+		assertNotNull(config);
 	}
 
 }

@@ -3,6 +3,8 @@
  */
 package ro.webeet.giveaway.persistence.configuration;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
 import ro.webeet.giveaway.persistence.environment.ProfileEnvironment;
+import ro.webeet.giveaway.util.exception.DatasourceException;
 
 /**
  * @author webeet
@@ -23,8 +26,8 @@ public class SpringConfiguration {
 	@Autowired
 	private ProfileEnvironment profile;
 
-	public void showSelectedEnv() {
-		profile.dataSource();
+	public DataSource dataSource() throws DatasourceException {
+		return profile.dataSource();
 	}
 
 
