@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>giveaway-web</module>
+		<module>giveaway-persistence</module>
 	</modules>
 
 	<properties>
@@ -16,21 +17,68 @@
 		<surefire.version>2.19.1</surefire.version>
 		<junit.version>4.12</junit.version>
 		<slf4j.version>1.7.14</slf4j.version>
+		<spring.version>4.2.4.RELEASE</spring.version>
+		<spring.data.version>1.9.2.RELEASE</spring.data.version>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>DEVELOPMENT</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profile>dev</spring.profile>
+			</properties>
+		</profile>
+		<profile>
+			<id>TEST</id>
+			<properties>
+				<spring.profile>test</spring.profile>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
-
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring.data.version}</version>
 			</dependency>
 
 		</dependencies>

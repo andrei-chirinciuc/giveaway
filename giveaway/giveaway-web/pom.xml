@@ -20,12 +20,6 @@
 
 
 	<dependencies>
-		<!-- Unit test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		
 		<!-- Wicket dependencies -->
 		<dependency>
 		    <groupId>org.apache.wicket</groupId>
@@ -33,12 +27,6 @@
 		    <version>${wicket.version}</version>
 		</dependency>
 		
-		<!-- Necessary for wicket -->
-		<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-		</dependency>		
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
