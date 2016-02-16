@@ -3,6 +3,8 @@
  */
 package ro.webeet.giveaway.persistence.environment;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -36,6 +38,7 @@ public class DevEnvironment implements ProfileEnvironment {
 	@Autowired
 	private Environment env;
 
+	@Override
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() throws DatasourceException {
 		log.debug("DevEnvironment::Initializing database");
@@ -43,7 +46,7 @@ public class DevEnvironment implements ProfileEnvironment {
 		dataSourceLookup.setResourceRef(true);
 		DataSource dataSourceTemp = null;
 		try {
-			dataSourceTemp = dataSourceLookup.getDataSource(env.getProperty("giveaway.dev.jndi"));
+			dataSourceTemp = dataSourceLookup.getDataSource(env.getRequiredProperty("giveaway.dev.jndi"));
 		} catch (final DataSourceLookupFailureException e) {
 			log.error("DataSource not found.");
 			throw new DatasourceException(e);
@@ -51,6 +54,17 @@ public class DevEnvironment implements ProfileEnvironment {
 		final HikariConfig hikariConfig = new HikariConfig();
 		hikariConfig.setDataSource(dataSourceTemp);
 		return new HikariDataSource(hikariConfig);
+	}
+
+	@Override
+	public Properties getHibernateProperties() {
+		final Properties properties = new Properties();
+		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+		properties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_FORMAT_SQL));
+		properties.put(PROPERTY_NAME_HIBERNATE_NAMING, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_NAMING));
+		properties.put(PROPERTY_NAME_HIBERNATE_DDL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DDL));
+		return properties;
 	}
 
 }

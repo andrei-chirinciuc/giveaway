@@ -5,11 +5,15 @@ package ro.webeet.giveaway.persistence.configuration;
 
 import javax.sql.DataSource;
 
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import ro.webeet.giveaway.persistence.environment.ProfileEnvironment;
 import ro.webeet.giveaway.util.exception.DatasourceException;
@@ -29,6 +33,24 @@ public class SpringConfiguration {
 	public DataSource dataSource() throws DatasourceException {
 		return profile.dataSource();
 	}
+
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws DatasourceException {
+		final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		entityManagerFactoryBean.setDataSource(dataSource());
+		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+		entityManagerFactoryBean.setPackagesToScan("ro.webeet.giveaway.model");
+		entityManagerFactoryBean.setJpaProperties(profile.getHibernateProperties());
+		return entityManagerFactoryBean;
+	}
+
+	@Bean
+	public JpaTransactionManager transactionManager() throws DatasourceException {
+		final JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+		return transactionManager;
+	}
+
 
 
 }
