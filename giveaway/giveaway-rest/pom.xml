@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>giveaway</groupId>
+    <artifactId>giveaway</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>giveaway-rest</artifactId>
+  <packaging>war</packaging>
+  <name>giveaway-rest Maven Webapp</name>
+  <url>http://giveaway.webeet.ro</url>
+ 
+  <dependencies>
+   	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-server</artifactId>
+	</dependency>
+  </dependencies>
+  
+  
+ 
+  <build>
+    <finalName>giveaway-rest</finalName>
+    
+    <plugins>
+
+
+
+  	</plugins>
+    
+  </build>
+</project>

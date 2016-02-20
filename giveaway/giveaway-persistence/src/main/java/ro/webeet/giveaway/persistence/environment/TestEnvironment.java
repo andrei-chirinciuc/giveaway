@@ -25,7 +25,6 @@ public class TestEnvironment implements ProfileEnvironment {
 	@Autowired
 	private Environment env;
 
-	@Override
 	@Bean
 	public DataSource dataSource() {
 		log.debug("TestEnvironment::Running in test mode");
@@ -37,7 +36,6 @@ public class TestEnvironment implements ProfileEnvironment {
 		return dataSource;
 	}
 
-	@Override
 	public Properties getHibernateProperties() {
 		final Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));

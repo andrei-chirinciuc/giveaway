@@ -38,7 +38,6 @@ public class DevEnvironment implements ProfileEnvironment {
 	@Autowired
 	private Environment env;
 
-	@Override
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() throws DatasourceException {
 		log.debug("DevEnvironment::Initializing database");
@@ -56,7 +55,6 @@ public class DevEnvironment implements ProfileEnvironment {
 		return new HikariDataSource(hikariConfig);
 	}
 
-	@Override
 	public Properties getHibernateProperties() {
 		final Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
