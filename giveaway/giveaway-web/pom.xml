@@ -35,10 +35,6 @@
 		<!-- Giveaway dependecies-->
 		<dependency>
 			<groupId>giveaway</groupId>
-			<artifactId>giveaway-persistence</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>giveaway</groupId>
 			<artifactId>giveaway-utils</artifactId>
 		</dependency>
 		

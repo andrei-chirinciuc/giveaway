@@ -6,12 +6,14 @@ package ro.webeet.giveaway.persistence.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author webeet
  *
  */
 @Entity
+@Table(name = "User")
 public class User extends DBModel {
 
 	/**

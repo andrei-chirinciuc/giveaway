@@ -14,8 +14,38 @@
  
   <dependencies>
    	<dependency>
-		<groupId>com.sun.jersey</groupId>
-		<artifactId>jersey-server</artifactId>
+		<groupId>org.jboss.resteasy</groupId>
+		<artifactId>resteasy-jaxrs</artifactId>
+		<version>3.0.16.Final</version>
+	</dependency>
+	<dependency>
+	<groupId>org.jboss.resteasy</groupId>
+	<artifactId>resteasy-spring</artifactId>
+	<version>3.0.16.Final</version>
+</dependency>
+<dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>async-http-servlet-3.0</artifactId>
+      <version>3.0.16.Final</version>
+   </dependency>
+	
+   	<dependency>
+   		<groupId>giveaway</groupId>
+   		<artifactId>giveaway-persistence</artifactId>
+   	</dependency>
+   	
+   	<dependency>
+	    <groupId>org.jboss.resteasy</groupId>
+	    <artifactId>resteasy-jaxrs</artifactId>
+	    <version>2.2.1.GA</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.jboss.resteasy</groupId>
+	    <artifactId>resteasy-multipart-provider</artifactId>
+	    <version>2.2.0.GA</version>
+	    <scope>provided</scope>
 	</dependency>
   </dependencies>
   
