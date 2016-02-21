@@ -9,7 +9,6 @@
 		<module>giveaway-persistence</module>
 		<module>giveaway-utils</module>
 		<module>giveaway-web</module>
-    <module>giveaway-rest</module>
   </modules>
 
 	<properties>
