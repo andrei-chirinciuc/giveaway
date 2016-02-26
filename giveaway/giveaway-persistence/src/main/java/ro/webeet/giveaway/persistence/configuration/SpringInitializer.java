@@ -2,7 +2,7 @@ package ro.webeet.giveaway.persistence.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class HelloWorldInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -11,7 +11,7 @@ public class HelloWorldInitializer extends AbstractAnnotationConfigDispatcherSer
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return null;
+		return new Class[] {};
 	}
 
 	@Override
@@ -20,4 +20,3 @@ public class HelloWorldInitializer extends AbstractAnnotationConfigDispatcherSer
 	}
 
 }
-

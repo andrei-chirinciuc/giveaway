@@ -1,9 +1,13 @@
 package ro.webeet.giveaway.persistence.environment;
 
-public interface Profiles {
+public class Profiles {
 
-	String DEVELOPMENT = "dev";
-	String TEST = "test";
-	String PRODUCTION = "prod";
-	String DEFAULT = DEVELOPMENT;
+	public static final String DEVELOPMENT = "dev";
+	public static final String TEST = "test";
+	public static final String PRODUCTION = "prod";
+	public static final String DEFAULT = DEVELOPMENT;
+
+	private Profiles() {
+	}
+
 }

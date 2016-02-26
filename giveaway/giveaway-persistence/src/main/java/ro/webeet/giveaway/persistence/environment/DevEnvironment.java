@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
@@ -30,8 +29,8 @@ import ro.webeet.giveaway.util.exception.DatasourceException;
  */
 @Configuration
 @Profile(Profiles.DEVELOPMENT)
-@PropertySources({ @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false), })
-public class DevEnvironment implements ProfileEnvironment {
+@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false)
+public class DevEnvironment extends ProfileEnvironment {
 
 	private static final Logger log = LoggerFactory.getLogger(DevEnvironment.class);
 
@@ -39,6 +38,7 @@ public class DevEnvironment implements ProfileEnvironment {
 	private Environment env;
 
 	@Bean(destroyMethod = "close")
+	@Override
 	public DataSource dataSource() throws DatasourceException {
 		log.debug("DevEnvironment::Initializing database");
 		final JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
@@ -55,6 +55,7 @@ public class DevEnvironment implements ProfileEnvironment {
 		return new HikariDataSource(hikariConfig);
 	}
 
+	@Override
 	public Properties getHibernateProperties() {
 		final Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));

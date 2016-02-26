@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -27,7 +26,7 @@ import ro.webeet.giveaway.util.exception.DatasourceException;
 @Configuration
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = { "ro.webeet.giveaway.persistence.repository" })
-@PropertySources({ @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false), })
+@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false)
 @ComponentScan(basePackages = { "ro.webeet.giveaway.persistence.service", "ro.webeet.giveaway.persistence.model",
 		"ro.webeet.giveaway.persistence.rest.service", "ro.webeet.giveaway.persistence.environment" })
 public class SpringConfiguration {

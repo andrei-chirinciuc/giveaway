@@ -11,14 +11,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
 @Profile(Profiles.TEST)
-@PropertySources({ @PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false), })
-public class TestEnvironment implements ProfileEnvironment {
+@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound = false)
+public class TestEnvironment extends ProfileEnvironment {
 
 	private static final Logger log = LoggerFactory.getLogger(TestEnvironment.class);
 
@@ -26,6 +25,7 @@ public class TestEnvironment implements ProfileEnvironment {
 	private Environment env;
 
 	@Bean
+	@Override
 	public DataSource dataSource() {
 		log.debug("TestEnvironment::Running in test mode");
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -36,6 +36,7 @@ public class TestEnvironment implements ProfileEnvironment {
 		return dataSource;
 	}
 
+	@Override
 	public Properties getHibernateProperties() {
 		final Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
