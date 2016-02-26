@@ -27,8 +27,8 @@ public class User extends DBModel {
 	private String email;
 	private String name;
 	private String password;
-	private Address address;
-	private Role role;
+	// private Address address;
+	// private Role role;
 
 	public Long getId() {
 		return id;
@@ -62,21 +62,21 @@ public class User extends DBModel {
 		this.password = password;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
+	// public Address getAddress() {
+	// return address;
+	// }
+	//
+	// public void setAddress(Address address) {
+	// this.address = address;
+	// }
+	//
+	// public Role getRole() {
+	// return role;
+	// }
+	//
+	// public void setRole(Role role) {
+	// this.role = role;
+	// }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	
 }
