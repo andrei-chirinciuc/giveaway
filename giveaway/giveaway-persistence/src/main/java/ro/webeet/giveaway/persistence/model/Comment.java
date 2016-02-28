@@ -2,7 +2,6 @@ package ro.webeet.giveaway.persistence.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -32,7 +31,7 @@ public class Comment extends DBModel{
 	@JoinColumn(name = "USER_ID")
 	private User user;
 
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	@OneToMany
 	@JoinColumn(name = "COMMENT_ID", nullable = true, unique = false)
 	private List<Comment> comment;
 

@@ -2,7 +2,6 @@ package ro.webeet.giveaway.persistence.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +17,7 @@ public class Category extends DBModel{
 	@GeneratedValue
 	private Long id;
 
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	@OneToMany
 	@JoinColumn(name = "CATEGORY_ID", nullable = true, unique = false)
 	private List<Category> category;
 	private String name;
