@@ -24,3 +24,5 @@ target/
 .project
 .recommenders
 .settings
+
+.DS_Store

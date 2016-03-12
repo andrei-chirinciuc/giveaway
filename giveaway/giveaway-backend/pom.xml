@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>giveaway</groupId>
+		<artifactId>giveaway</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>giveaway-backend</groupId>
+	<artifactId>giveaway-backend</artifactId>
+	<packaging>war</packaging>
+	<name>giveaway-backend UI</name>
+	<url>http://www.giveaway.webeet.ro</url>
+
+	<properties>
+		<wicket.version>7.1.0</wicket.version>
+	</properties>
+
+
+	<dependencies>
+		<!-- Wicket dependencies -->
+		<dependency>
+		    <groupId>org.apache.wicket</groupId>
+		    <artifactId>wicket-core</artifactId>
+		    <version>${wicket.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<!-- Giveaway dependecies-->
+		<dependency>
+			<groupId>giveaway</groupId>
+			<artifactId>giveaway-utils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>giveaway</groupId>
+			<artifactId>giveaway-models</artifactId>
+		</dependency>
+		
+
+			
+	</dependencies>
+
+	<build>
+		<finalName>giveaway-backend</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

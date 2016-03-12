@@ -37,6 +37,10 @@
 			<groupId>giveaway</groupId>
 			<artifactId>giveaway-utils</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>giveaway</groupId>
+			<artifactId>giveaway-models</artifactId>
+		</dependency>
 		
 
 			

@@ -6,10 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>giveaway-persistence</module>
+		<module>giveaway-models</module>
 		<module>giveaway-utils</module>
 		<module>giveaway-web</module>
-  </modules>
+		<module>giveaway-backend</module>
+		<module>giveaway-persistence</module>
+  	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -113,10 +115,9 @@
 			</dependency>
 			<dependency>
 				<groupId>giveaway</groupId>
-				<artifactId>giveaway-persistence</artifactId>
+				<artifactId>giveaway-models</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
-			
 
 		</dependencies>
 	</dependencyManagement>
