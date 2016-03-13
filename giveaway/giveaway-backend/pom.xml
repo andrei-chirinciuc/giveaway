@@ -22,27 +22,34 @@
 	<dependencies>
 		<!-- Wicket dependencies -->
 		<dependency>
-		    <groupId>org.apache.wicket</groupId>
-		    <artifactId>wicket-core</artifactId>
-		    <version>${wicket.version}</version>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-bean-validation</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-auth-roles</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-		
-		<!-- Giveaway dependecies-->
+
+		<!-- Giveaway dependecies -->
 		<dependency>
 			<groupId>giveaway</groupId>
 			<artifactId>giveaway-utils</artifactId>
@@ -55,7 +62,7 @@
 			<groupId>giveaway</groupId>
 			<artifactId>giveaway-rest</artifactId>
 		</dependency>
-			
+
 	</dependencies>
 
 	<build>

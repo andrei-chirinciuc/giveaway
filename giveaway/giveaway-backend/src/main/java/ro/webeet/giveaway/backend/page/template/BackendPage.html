@@ -51,6 +51,9 @@
 <body>
 
 	<header>
+	<ul id='userMenu' class='dropdown-content'>
+				<li><a href="#" wicket:id="logout">Logout</a></li>
+	</ul>
 		<nav class="top-nav">
 			<div class="container">
 				<div class="nav-wrapper">
@@ -58,11 +61,15 @@
 				</div>
 			</div>
 		</nav>
-		<ul id="nav-mobile" class="side-nav fixed">
-			<li><span wicket:id="userEmailLbl"></span></li>
-			<li><a href="#!">First Sidebar Link</a></li>
-			<li><a href="#!">Second Sidebar Link</a></li>
-		</ul>
+		<wicket:enclosure child="userEmailLbl">
+			<ul id="nav-mobile" class="side-nav fixed">
+				<li><a href="#" id="userMenuDropdown" class="" data-beloworigin="true" data-activates='userMenu'>
+						<span wicket:id="userEmailLbl" class="truncate"></span>
+					</a>
+				</li>
+				<li><a href="search/user">Search user</a></li>
+			</ul>
+		</wicket:enclosure>
 	</header>
 	<main>
 	<div class="container">
@@ -88,6 +95,16 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			 $('#userMenuDropdown').dropdown({
+			      inDuration: 300,
+			      outDuration: 225,
+			      constrain_width: true, // Does not change width of dropdown to that of the activator
+			      hover: true, // Activate on hover
+			      gutter: 0, // Spacing from edge
+			      belowOrigin: true, // Displays dropdown below the button
+			      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+			    }
+			  );
 		});
 	</script>
 </body>

@@ -6,6 +6,7 @@ import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -16,8 +17,8 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import ro.webeet.giveaway.backend.core.WebeetSession;
 import ro.webeet.giveaway.backend.page.template.BackendPage;
-import ro.webeet.giveaway.persistence.model.User;
 import ro.webeet.giveaway.rest.client.UserServiceClient;
+import ro.webeet.giveaway.rest.dto.user.AuthenticationDTO;
 
 public class LoginPage extends BackendPage {
 
@@ -33,16 +34,24 @@ public class LoginPage extends BackendPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		final User user = new User();
-		setDefaultModel(new CompoundPropertyModel<User>(user));
+		final AuthenticationDTO user = new AuthenticationDTO();
+		setDefaultModel(new CompoundPropertyModel<AuthenticationDTO>(user));
 
 		final FeedbackPanel feedbackPanel = new FeedbackPanel("feedbackPanel");
 		feedbackPanel.setOutputMarkupPlaceholderTag(true);
 		add(feedbackPanel);
 
-		final Form<Void> form = new Form<Void>("form");
-		form.add(new EmailTextField("email").add(new PropertyValidator<User>()));
-		form.add(new PasswordTextField("password").add(new PropertyValidator<User>()));
+		final StatelessForm<Void> form = new StatelessForm<Void>("form") {
+			private static final long serialVersionUID = -3892480049590342561L;
+
+			@Override
+			protected void onError() {
+				logger.error("Error in login form.");
+				super.onError();
+			}
+		};
+		form.add(new EmailTextField("username").add(new PropertyValidator<AuthenticationDTO>()));
+		form.add(new PasswordTextField("password").add(new PropertyValidator<AuthenticationDTO>()));
 		form.add(new AjaxSubmitLink("loginBtn") {
 
 			private static final long serialVersionUID = -1832935833100512272L;
@@ -52,7 +61,7 @@ public class LoginPage extends BackendPage {
 				super.onSubmit(target, form);
 				final UserServiceClient client = new UserServiceClient();
 				try {
-					WebeetSession.get().setUser(client.authenticate(user.getEmail(), user.getPassword()));
+					WebeetSession.get().setUser(client.authenticate(user.getUsername(), user.getPassword()));
 					setResponsePage(HomePage.class);
 				} catch (final HttpClientErrorException e) {
 					if (HttpStatus.FORBIDDEN.equals(e.getStatusCode())) {
