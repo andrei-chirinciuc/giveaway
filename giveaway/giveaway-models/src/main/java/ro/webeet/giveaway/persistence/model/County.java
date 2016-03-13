@@ -1,5 +1,6 @@
 package ro.webeet.giveaway.persistence.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -52,7 +53,7 @@ public class County extends DBModel{
 	}
 
 	public Set<City> getCity() {
-		return cities;
+		return cities == null ? cities = new HashSet<City>() : cities;
 	}
 
 	public void setCity(Set<City> city) {

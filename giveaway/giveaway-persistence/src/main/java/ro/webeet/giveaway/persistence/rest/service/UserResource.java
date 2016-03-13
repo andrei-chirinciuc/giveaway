@@ -24,7 +24,7 @@ public class UserResource {
 		return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@RequestMapping(value = "/user", method = RequestMethod.PUT)
 	public ResponseEntity<User> save(@RequestBody User user) {
 		repository.save(user);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
