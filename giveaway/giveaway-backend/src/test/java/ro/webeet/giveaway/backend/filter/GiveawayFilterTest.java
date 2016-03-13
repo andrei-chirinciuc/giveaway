@@ -6,8 +6,8 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
-import ro.webeet.giveaway.backend.WicketApplication;
-import ro.webeet.giveaway.backend.filter.GiveawayFilter;
+import ro.webeet.giveaway.backend.core.WicketApplication;
+import ro.webeet.giveaway.backend.core.filter.GiveawayFilter;
 
 public class GiveawayFilterTest {
 

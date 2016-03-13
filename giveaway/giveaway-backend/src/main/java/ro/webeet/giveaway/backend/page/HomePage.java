@@ -1,6 +1,9 @@
-package ro.webeet.giveaway.backend;
+package ro.webeet.giveaway.backend.page;
 
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+
+import ro.webeet.giveaway.backend.page.template.BackendPage;
 
 public class HomePage extends BackendPage {
 
@@ -17,5 +20,9 @@ public class HomePage extends BackendPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+
+		final FeedbackPanel feedbackPanel = new FeedbackPanel("feedbackPanel");
+		feedbackPanel.setOutputMarkupPlaceholderTag(true);
+		add(feedbackPanel);
 	}
 }

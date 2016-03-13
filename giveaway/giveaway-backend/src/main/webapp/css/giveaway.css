@@ -1,18 +1,30 @@
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+
+header, main, footer {
+	padding-left: 240px;
 }
 
-main {
-    flex: 1 0 auto;
+@media only screen and (max-width : 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
 }
 
+.container {
+    width: 85%;
+}
+
+nav.top-nav {
+	height: 122px;
+	box-shadow:none;
+}
+
+nav.top-nav a.page-title {
+    line-height: 122px;
+    font-size: 48px;
+}
 
 .header {
-  background-image: url('../images/header.jpg');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  min-height: 450px;
+    color: #ee6e73;
+    font-weight: 300;
 }
+

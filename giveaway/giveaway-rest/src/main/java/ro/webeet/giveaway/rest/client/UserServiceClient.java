@@ -1,6 +1,7 @@
 package ro.webeet.giveaway.rest.client;
 
 import ro.webeet.giveaway.persistence.model.User;
+import ro.webeet.giveaway.rest.dto.user.AuthenticationDTO;
 import ro.webeet.giveaway.util.endpoints.InternalEndpoint;
 
 public class UserServiceClient extends RestClientTemplate{
@@ -14,6 +15,12 @@ public class UserServiceClient extends RestClientTemplate{
 
 	public void save(final User user) {
 		getTemplate().put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user").toString(), user);
+	}
+
+	public User authenticate(final String username, final String password){
+		return getTemplate().postForObject(
+				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/authenticate").toString(),
+				new AuthenticationDTO(username, password), User.class);
 	}
 
 

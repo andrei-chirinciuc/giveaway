@@ -1,4 +1,4 @@
-package ro.webeet.giveaway.backend.filter;
+package ro.webeet.giveaway.backend.core.filter;
 
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
@@ -13,7 +13,7 @@ import org.apache.wicket.protocol.http.WicketFilter;
  *
  */
 @WebFilter(value = "/*", initParams = {
-		@WebInitParam(name = "applicationClassName", value = "ro.webeet.giveaway.backend.WicketApplication"),
+		@WebInitParam(name = "applicationClassName", value = "ro.webeet.giveaway.backend.core.WicketApplication"),
 		@WebInitParam(name = "filterMappingUrlPattern", value = "/*") })
 public class GiveawayFilter extends WicketFilter {
 
@@ -23,7 +23,7 @@ public class GiveawayFilter extends WicketFilter {
 
 	/**
 	 * Used by wicket to lunch the main class
-	 * 
+	 *
 	 * @param application
 	 */
 	public GiveawayFilter(WebApplication application) {

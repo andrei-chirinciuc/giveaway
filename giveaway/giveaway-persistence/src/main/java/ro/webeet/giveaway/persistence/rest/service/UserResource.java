@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ro.webeet.giveaway.persistence.model.User;
 import ro.webeet.giveaway.persistence.repository.UserRepository;
+import ro.webeet.giveaway.rest.dto.user.AuthenticationDTO;
 
 @RestController
 public class UserResource {
@@ -22,6 +23,13 @@ public class UserResource {
 	public ResponseEntity<User> getUser(@PathVariable Long id) {
 		final User user = repository.findOne(id);
 		return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/user/authenticate", method = RequestMethod.POST)
+	public ResponseEntity<User> authenticate(@RequestBody AuthenticationDTO authenticationDto) {
+		final User user = repository.findByEmailAndPassword(authenticationDto.getUsername(),
+				authenticationDto.getPassword());
+		return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.FORBIDDEN);
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)

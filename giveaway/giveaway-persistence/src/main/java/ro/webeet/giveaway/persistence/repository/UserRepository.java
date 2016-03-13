@@ -6,4 +6,6 @@ import ro.webeet.giveaway.persistence.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long>{
 
+	User findByEmailAndPassword(String username, String password);
+
 }
