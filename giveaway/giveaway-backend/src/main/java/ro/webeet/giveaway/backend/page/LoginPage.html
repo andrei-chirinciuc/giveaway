@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://giveaway.webeet.ro">
+<wicket:extend>
+
+  <div class="row">
+  	<div class="col s12">
+  		<h2 class="header">Login</h2>
+ 	</div>
+  </div>		
+
+  <div class="row">
+  	<div class="col s12">
+  		<div wicket:id="feedbackPanel"></div>
+ 	</div>
+  </div>	
+	
+  <div class="row">
+    <form class="col s12" wicket:id="form">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="username" type="email" class="validate" wicket:id="email">
+          <label for="username">Username (E-mail)</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" wicket:id="password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <a class="waves-effect waves-light btn-large" wicket:id="loginBtn"><i class="material-icons right">send</i>Login</a>
+      </div>
+    </form>
+  </div>
+  
+  
+  </wicket:extend>
+</html>
