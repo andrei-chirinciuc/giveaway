@@ -48,6 +48,7 @@ public class LoginPage extends BackendPage {
 			protected void onError() {
 				logger.error("Error in login form.");
 				super.onError();
+				setResponsePage(getPage().getClass());
 			}
 		};
 		form.add(new EmailTextField("username").add(new PropertyValidator<AuthenticationDTO>()));
