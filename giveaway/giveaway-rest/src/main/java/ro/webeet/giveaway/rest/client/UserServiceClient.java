@@ -17,10 +17,10 @@ public class UserServiceClient extends RestClientTemplate{
 		getTemplate().put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user").toString(), user);
 	}
 
-	public User authenticate(final String username, final String password){
+	public User authenticate(final AuthenticationDTO authenticationDTO){
 		return getTemplate().postForObject(
 				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/authenticate").toString(),
-				new AuthenticationDTO(username, password), User.class);
+				authenticationDTO, User.class);
 	}
 
 

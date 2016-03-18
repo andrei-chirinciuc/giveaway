@@ -34,8 +34,8 @@ public class LoginPage extends BackendPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		final AuthenticationDTO user = new AuthenticationDTO();
-		setDefaultModel(new CompoundPropertyModel<AuthenticationDTO>(user));
+		final AuthenticationDTO authenticationDTO = new AuthenticationDTO();
+		setDefaultModel(new CompoundPropertyModel<AuthenticationDTO>(authenticationDTO));
 
 		final FeedbackPanel feedbackPanel = new FeedbackPanel("feedbackPanel");
 		feedbackPanel.setOutputMarkupPlaceholderTag(true);
@@ -62,7 +62,7 @@ public class LoginPage extends BackendPage {
 				super.onSubmit(target, form);
 				final UserServiceClient client = new UserServiceClient();
 				try {
-					WebeetSession.get().setUser(client.authenticate(user.getUsername(), user.getPassword()));
+					WebeetSession.get().setUser(client.authenticate(authenticationDTO));
 					setResponsePage(HomePage.class);
 				} catch (final HttpClientErrorException e) {
 					if (HttpStatus.FORBIDDEN.equals(e.getStatusCode())) {
