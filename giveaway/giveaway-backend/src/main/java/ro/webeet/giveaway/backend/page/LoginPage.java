@@ -1,10 +1,7 @@
 package ro.webeet.giveaway.backend.page;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.EmailTextField;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -16,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
 import ro.webeet.giveaway.backend.core.WebeetSession;
+import ro.webeet.giveaway.backend.core.component.ComponentFactory;
 import ro.webeet.giveaway.backend.page.template.BackendPage;
 import ro.webeet.giveaway.rest.client.UserServiceClient;
 import ro.webeet.giveaway.rest.dto.user.AuthenticationDTO;
@@ -53,33 +51,22 @@ public class LoginPage extends BackendPage {
 		};
 		form.add(new EmailTextField("username").add(new PropertyValidator<AuthenticationDTO>()));
 		form.add(new PasswordTextField("password").add(new PropertyValidator<AuthenticationDTO>()));
-		form.add(new AjaxSubmitLink("loginBtn") {
-
-			private static final long serialVersionUID = -1832935833100512272L;
-
-			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-				super.onSubmit(target, form);
-				final UserServiceClient client = new UserServiceClient();
-				try {
-					WebeetSession.get().setUser(client.authenticate(authenticationDTO));
-					setResponsePage(HomePage.class);
-				} catch (final HttpClientErrorException e) {
-					if (HttpStatus.FORBIDDEN.equals(e.getStatusCode())) {
-						error("Invalid username or password");
-					} else {
-						logger.error("The endpoint might be down. Unable to call the authentication service: {}",
-								e.getMessage());
-						e.printStackTrace();
-					}
+		form.add(ComponentFactory.newAjaxLink("loginBtn", target -> {
+			final UserServiceClient client = new UserServiceClient();
+			try {
+				WebeetSession.get().setUser(client.authenticate(authenticationDTO));
+				setResponsePage(HomePage.class);
+			} catch (final HttpClientErrorException e) {
+				if (HttpStatus.FORBIDDEN.equals(e.getStatusCode())) {
+					error("Invalid username or password");
+				} else {
+					logger.error("The endpoint might be down. Unable to call the authentication service: {}",
+							e.getMessage());
+					e.printStackTrace();
 				}
-
-				target.add(feedbackPanel);
-
 			}
-
-		});
-
+			target.add(feedbackPanel);
+		}));
 
 		add(form);
 	}
