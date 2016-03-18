@@ -51,7 +51,7 @@ public class LoginPage extends BackendPage {
 		};
 		form.add(new EmailTextField("username").add(new PropertyValidator<AuthenticationDTO>()));
 		form.add(new PasswordTextField("password").add(new PropertyValidator<AuthenticationDTO>()));
-		form.add(ComponentFactory.newAjaxLink("loginBtn", target -> {
+		form.add(ComponentFactory.newAjaxSubmitLink("loginBtn", target -> {
 			final UserServiceClient client = new UserServiceClient();
 			try {
 				WebeetSession.get().setUser(client.authenticate(authenticationDTO));
