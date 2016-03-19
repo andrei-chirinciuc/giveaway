@@ -77,12 +77,10 @@ public class UserServiceClient extends RestClientTemplate{
 		StreamSupport.stream(resources.spliterator(), false).//
 		map(Resource::getContent).//
 		forEach(user -> {
-			log.info("{} - {}", user.getName(), user.getEmail());
 			users.add(user);
 		});
 
 		return users;
-		// return null;
 	}
 
 
