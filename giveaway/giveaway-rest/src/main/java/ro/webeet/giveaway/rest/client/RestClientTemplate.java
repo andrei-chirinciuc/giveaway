@@ -9,12 +9,13 @@ public class RestClientTemplate implements Serializable{
 
 	private static final long serialVersionUID = -6057770277707457802L;
 
-	private RestTemplate template;
-	
+	private transient RestTemplate template;
+
 	public RestTemplate getTemplate(){
 		if(template==null){
 			template = new RestTemplate();
 			template.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+			template.getMessageConverters().add(new HalHttpMessageConverter());
 		}
 		return template;
 	}

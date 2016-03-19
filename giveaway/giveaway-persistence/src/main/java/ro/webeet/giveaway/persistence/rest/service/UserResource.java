@@ -25,6 +25,11 @@ public class UserResource {
 		return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
+	@RequestMapping(value = "/count", method = RequestMethod.GET)
+	public ResponseEntity<Long> count() {
+		return new ResponseEntity<Long>(repository.count(), HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/user/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<User> authenticate(@RequestBody AuthenticationDTO authenticationDto) {
 		final User user = repository.findByEmailAndPassword(authenticationDto.getUsername(),
