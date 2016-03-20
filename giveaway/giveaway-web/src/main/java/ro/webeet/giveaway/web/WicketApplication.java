@@ -4,6 +4,7 @@
 package ro.webeet.giveaway.web;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.protocol.http.WebApplication;
 
 /**
@@ -20,6 +21,8 @@ public class WicketApplication extends WebApplication {
 	@Override
 	protected void init() {
 		super.init();
+		
+		new BeanValidationConfiguration().configure(this);
 		mountPage("/register", UserRegistrationPage.class);
 	}
 }
