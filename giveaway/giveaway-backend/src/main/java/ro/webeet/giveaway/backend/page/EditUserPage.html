@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://giveaway.webeet.ro">
+<wicket:extend>
+
+	<div class="row">
+		<div class="col s12">
+			<h2 class="header" wicket:id="title">Edit user</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col s12">
+			<div wicket:id="feedbackPanel"></div>
+		</div>
+		<div class="col s12">
+
+			<form wicket:id="form">
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="name" type="text" class="validate" wicket:id="name">
+						<label for="name">Name</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="email" type="email" class="validate" wicket:id="email">
+						<label for="email" data-error="Invalid">E-mail</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" wicket:id="password">
+						<label for="password">Password</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="telephone" type="text" class="validate"
+							wicket:id="telephone"> <label for="telephone">Phone</label>
+					</div>
+					<div class="col s12">
+						<label for="birthday">Birthday</label>
+						<input id="birthday" type="date" class="datepicker">
+					</div>
+					<div class="col s12">
+						<label for="adminFlag">Make user admin</label>
+						<div class="switch ">
+							<label> No <input type="checkbox"> <span
+								class="lever"></span> Yes
+							</label>
+						</div>
+					</div>
+					<div class="col s12">&nbsp;</div>
+					<div class=" col s12">
+						<div class="right">
+							<a class="waves-effect waves-light btn-large" wicket:id="save">Save</a>
+							<a class="waves-effect btn-large grey" wicket:id="cancel">Cancel</a>
+						</div>	
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.datepicker').pickadate({
+				selectMonths : true, // Creates a dropdown to control month
+				selectYears : 30,
+				max : new Date()
+			// Creates a dropdown of 120 years to control year
+			});
+		});
+	</script>
+</wicket:extend>
+</html>

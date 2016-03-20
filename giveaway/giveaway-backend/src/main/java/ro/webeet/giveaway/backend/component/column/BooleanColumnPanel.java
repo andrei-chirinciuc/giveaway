@@ -19,9 +19,8 @@ public class BooleanColumnPanel extends Panel {
 
 	@Override
 	protected void onInitialize() {
-
-		final Boolean value = (Boolean) getDefaultModelObject();
 		super.onInitialize();
+		final Boolean value = (Boolean) getDefaultModelObject();
 		final Label booleanLabel = new Label("booleanLabel", value != null && value ? "Yes" : "No");
 		booleanLabel.add(AttributeModifier.append("class", value != null && value ? "green-text" : "red-text"));
 		add(booleanLabel);

@@ -4,8 +4,25 @@
 <wicket:extend>
 
 	<div class="row">
+
 		<div class="col s12">
 			<h2 class="header">Search users</h2>
+		</div>
+		<div class="col s12">
+			<div style="position: relative">
+				<div class="fixed-action-btn horizontal"
+					style="position: absolute; display: inline-block; 45px; right: 24px;">
+					<a class="btn-floating btn-large red"> <i
+						class="large material-icons">mode_edit</i>
+					</a>
+					<ul>
+						<li><a class="btn-floating green"><i
+								class="material-icons">search</i></a></li>
+						<li><a class="btn-floating blue" wicket:id="addNewUser"><i
+								class="material-icons">add</i></a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -16,10 +33,12 @@
 		<div class="col s12">
 			<table wicket:id="datatable" class="highlight"></table>
 		</div>
-		<div class="col s12"><div wicket:id="nav"></div></div>
+		<div class="col s12">
+			<div wicket:id="nav"></div>
+		</div>
 	</div>
-	
-	
+
+
 
 
 </wicket:extend>

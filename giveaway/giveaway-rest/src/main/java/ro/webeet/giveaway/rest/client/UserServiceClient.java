@@ -27,36 +27,43 @@ public class UserServiceClient extends RestClientTemplate{
 
 	private static final Logger log = LoggerFactory.getLogger(UserServiceClient.class);
 
-	// @Autowired
-	// private RestOperations restOperations;
-
 	public User get(final Long id) {
+		log.debug("UserServiceClient:get user id:{}", id);
 		return getTemplate().getForObject(
 				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/{id}").toString(), User.class, id);
 	}
 
 	public void save(final User user) {
+		log.debug("UserServiceClient:save user '{}'", user.getEmail());
 		getTemplate().put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user").toString(), user);
 	}
 
+	public void delete(final Long id) {
+		log.debug("UserServiceClient:delete user id:{}", id);
+		getTemplate()
+		.delete(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/{id}").toString(), id);
+	}
+
 	public User authenticate(final AuthenticationDTO authenticationDTO){
+		log.debug("UserServiceClient:authenticate");
 		return getTemplate().postForObject(
 				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/authenticate").toString(),
 				authenticationDTO, User.class);
 	}
 
 	public Long count() {
+		log.debug("UserServiceClient:count");
 		return getTemplate().getForObject(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("count").toString(),
 				Long.class);
 	}
 
 	public List<User> findAll(Long pageStart, Long pageSize, String sortBy, Boolean ascending) {
+		log.debug("UserServiceClient:findAll");
 		final long page = pageStart == null ? 0 : pageStart;
 		final long size = pageSize == null ? 10000 : pageSize;
 		final URI uri = URI.create(
 				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("data").toString());
 
-		// return users.getContent();
 		final Traverson traverson = new Traverson(uri, MediaTypes.HAL_JSON);
 
 		final Map<String, Object> parameters = new HashMap<String, Object>();

@@ -1,5 +1,6 @@
 package ro.webeet.giveaway.backend.page;
 
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -51,7 +52,7 @@ public class LoginPage extends BackendPage {
 		};
 		form.add(new EmailTextField("username").add(new PropertyValidator<AuthenticationDTO>()));
 		form.add(new PasswordTextField("password").add(new PropertyValidator<AuthenticationDTO>()));
-		form.add(ComponentFactory.newAjaxSubmitLink("loginBtn", target -> {
+		final AjaxSubmitLink submit = ComponentFactory.newAjaxSubmitLink("loginBtn", target -> {
 			final UserServiceClient client = new UserServiceClient();
 			try {
 				WebeetSession.get().setUser(client.authenticate(authenticationDTO));
@@ -66,7 +67,9 @@ public class LoginPage extends BackendPage {
 				}
 			}
 			target.add(feedbackPanel);
-		}));
+		});
+		form.setDefaultButton(submit);
+		form.add(submit);
 
 		add(form);
 	}

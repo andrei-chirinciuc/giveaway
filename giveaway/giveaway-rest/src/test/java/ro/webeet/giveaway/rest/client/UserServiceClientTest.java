@@ -50,6 +50,12 @@ public class UserServiceClientTest {
 	}
 
 	@Test
+	public void testDeleteUser() {
+		final UserServiceClient c = new UserServiceClient();
+		c.delete(4L);
+	}
+
+	@Test
 	public void testGetUsers() {
 		final URI uri = URI.create(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("data").toString());
 
