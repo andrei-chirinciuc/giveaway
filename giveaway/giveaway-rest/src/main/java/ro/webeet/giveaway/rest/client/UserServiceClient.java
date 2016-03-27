@@ -38,10 +38,10 @@ public class UserServiceClient extends RestClientTemplate{
 		getTemplate().put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user").toString(), user);
 	}
 
-	public void delete(final Long id) {
-		log.debug("UserServiceClient:delete user id:{}", id);
+	public void delete(final User user) {
+		log.debug("UserServiceClient:delete user :{}", user);
 		getTemplate()
-		.delete(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/{id}").toString(), id);
+				.put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/delete/").toString(), user);
 	}
 
 	public User authenticate(final AuthenticationDTO authenticationDTO){
@@ -59,19 +59,16 @@ public class UserServiceClient extends RestClientTemplate{
 
 	public List<User> findAll(Long pageStart, Long pageSize, String sortBy, Boolean ascending) {
 		log.debug("UserServiceClient:findAll");
-		final long page = pageStart == null ? 0 : pageStart;
-		final long size = pageSize == null ? 10000 : pageSize;
-		final URI uri = URI.create(
-				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("data").toString());
-
-		final Traverson traverson = new Traverson(uri, MediaTypes.HAL_JSON);
 
 		final Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("page", page);
-		parameters.put("size", size);
+		parameters.put("page", pageStart == null ? 0 : pageStart);
+		parameters.put("size", pageSize == null ? 10000 : pageSize);
 		parameters.put("sort", sortBy + (ascending ? ",asc" : ",desc"));
 
 		// Set up path traversal
+		final URI uri = URI.create(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("data").toString());
+
+		final Traverson traverson = new Traverson(uri, MediaTypes.HAL_JSON);
 		final TraversalBuilder builder = traverson.follow("users").withTemplateParameters(parameters);
 		final PagedResources<Resource<User>> resources = builder.toObject(new PagedResourcesType<Resource<User>>() {
 		});

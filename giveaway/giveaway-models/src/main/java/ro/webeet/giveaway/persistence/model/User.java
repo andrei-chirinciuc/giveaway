@@ -3,7 +3,10 @@
  */
 package ro.webeet.giveaway.persistence.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,17 +24,20 @@ public class User extends DBModel {
 	@Id
 	@GeneratedValue
 	private Long id;
-
+	@Column(unique = true, nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false)
 	private String password;
 	private String telephone;
-	private Integer age;
+	private Date birthday;
+	@Column(nullable = false, columnDefinition = "tinyint(1) default 0")
 	private Boolean adminFlag;
-
+	@Column(nullable = false, columnDefinition = "tinyint(1) default 0")
+	private Boolean deletedFlag;
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
-
 	@OneToOne(optional = true, mappedBy = "user", cascade = CascadeType.ALL)
 	private Address address;
 
@@ -75,12 +81,12 @@ public class User extends DBModel {
 		this.telephone = telephone;
 	}
 
-	public Integer getAge() {
-		return age;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public Address getAddress() {
@@ -105,6 +111,14 @@ public class User extends DBModel {
 
 	public void setUserType(UserType userType) {
 		this.userType = userType;
+	}
+
+	public Boolean getDeletedFlag() {
+		return deletedFlag;
+	}
+
+	public void setDeletedFlag(Boolean deletedFlag) {
+		this.deletedFlag = deletedFlag;
 	}
 
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,16 +45,12 @@ public class UserServiceClientTest {
 		user.setTelephone("000-000-0000");
 		user.setAdminFlag(false);
 		user.setUserType(UserType.PERSON);
-		user.setAge(18);
+		user.setBirthday(new Date());
+		user.setDeletedFlag(false);
 		// user.setAddress(address);
 		client.save(user);
 	}
 
-	@Test
-	public void testDeleteUser() {
-		final UserServiceClient c = new UserServiceClient();
-		c.delete(4L);
-	}
 
 	@Test
 	public void testGetUsers() {

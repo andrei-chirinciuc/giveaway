@@ -79,7 +79,7 @@ public class SearchUserPage extends BackendPage {
 					public void onDelete(AjaxRequestTarget target, IModel<User> model) {
 						final UserServiceClient client = new UserServiceClient();
 						final User user = model.getObject();
-						client.delete(user.getId());
+						client.delete(user);
 						setResponsePage(SearchUserPage.class);
 					}
 				});

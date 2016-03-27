@@ -43,13 +43,13 @@ public class UserResource {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
+	@RequestMapping(value = "/user/delete", method = RequestMethod.PUT)
+	public ResponseEntity<User> delete(@RequestBody User user) {
 		try {
-			repository.delete(id);
-			return ResponseEntity.noContent().build();
+			repository.delete(user);
+			return new ResponseEntity<User>(HttpStatus.OK);
 		} catch (final Exception e) {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 }
