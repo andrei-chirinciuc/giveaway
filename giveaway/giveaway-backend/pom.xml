@@ -15,7 +15,7 @@
 	<url>http://www.giveaway.webeet.ro</url>
 
 	<properties>
-		<wicket.version>7.1.0</wicket.version>
+		<wicket.version>7.2.0</wicket.version>
 	</properties>
 
 
@@ -41,6 +41,13 @@
 			<artifactId>wicket-extensions</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-datetime</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+
+
 
 
 

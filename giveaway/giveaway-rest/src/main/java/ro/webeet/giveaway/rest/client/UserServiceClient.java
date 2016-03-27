@@ -41,7 +41,7 @@ public class UserServiceClient extends RestClientTemplate{
 	public void delete(final User user) {
 		log.debug("UserServiceClient:delete user :{}", user);
 		getTemplate()
-				.put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/delete/").toString(), user);
+		.delete(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/delete/").toString(), user);
 	}
 
 	public User authenticate(final AuthenticationDTO authenticationDTO){

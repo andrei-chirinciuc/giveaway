@@ -14,9 +14,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Where;
+
 import ro.webeet.giveaway.persistence.model.property.UserType;
 
 @Entity
+@Where(clause = "deleted_flag=0")
 public class User extends DBModel {
 
 	private static final long serialVersionUID = 5945554289741124978L;
