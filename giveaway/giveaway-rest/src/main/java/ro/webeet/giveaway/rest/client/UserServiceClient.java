@@ -33,7 +33,7 @@ public class UserServiceClient extends RestClientTemplate{
 				InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user/{id}").toString(), User.class, id);
 	}
 
-	public void save(final User user) {
+	public void save(final UserDTO user) {
 		log.debug("UserServiceClient:save user '{}'", user.getEmail());
 		getTemplate().put(InternalEndpoint.PERSISTENCE.getEndpointAddress().append("user").toString(), user);
 	}
